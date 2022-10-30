@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog API</title>
+  <style>
+    img {
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dog API</h1>
+  <img draggable="false" src="./noResult.png" alt="dog">
+  <h2>아직 선택된 사진이 없습니다!</h2>
+  <br>
+  <button>Get dog</button>
+  
+  <!-- axios CDN을 삽입 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function getDog () {
+      img = document.querySelector('img')
+      tag = document.querySelector('h2')
+      // console.log(typeof img)    img는 하나의 object임
+      axios({
+        method: 'get',
+        url: 'https://dog.ceo/api/breeds/image/random'
+      })
+      .then(response => {
+        img.src = response.data.message
+        img.addEventListener('load', (event) => {
+          tag.innerText = ''
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        tag.innerText = '오류입니다.'
+      })
+      // dog.ceo 주소로 get 요청을 보내면 random 강아지 사진을 보내준다.
+    }
+
+    const button = document.querySelector('button')
+    button.addEventListener('click', getDog)
+  </script>
+</body>
+</html>

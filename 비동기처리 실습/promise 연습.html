@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    new Promise(function(resolve, reject){
+      console.log('Hi')
+      setTimeout(function(){
+        console.log('SSAFY')
+        resolve() //settimeout이 끝나면 resolve를 실행
+      }, 3000)
+    })
+    .then(function(){
+      console.log('bye')
+    })
+    .catch(() => {
+      console.log('catch')
+    })
+
+  </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const result = new Promise(function(resolve, reject){
+      console.log('Hi')
+      setTimeout(function(){
+        console.log('SSAFY')
+        resolve('bye')  resolve에 값을 넘겨주기
+      }, 3000)
+    })
+    result.then(function(data){
+      console.log(data)
+    })
+  </script>
+</body>
+</html> -->
+
+<!--교수님 예제-->
+<!-- function asyncFunc() {  // 비동기
+  // axios 일하기 (1)
+  const result = new Promise(function (resolve, reject) {
+    // axios 일하기 (2)
+    const now = new Date()
+    if(now.getSeconds() % 2 == 0){
+      // 뭔가 일을 막 처리하고 정상적으로 응답이 오면 _ resolve
+      resolve('성공이야')
+    } else {
+      // 실패하면
+      reject('실패예요')
+    }
+  })
+  return result
+}
+// call back 의 call back
+
+asyncFunc()
+  .then(function (success) {  // 성공했을 때, 실행할 코드 = 
+    console.log(success) // = 성공이야
+    return 100 // promise 객체의 chaining = 100
+  })
+  .then(res => console.log(res)) // 성공했을 때, = 성공이야 100 뜸
+  .catch(fail => console.log(fail)) // 실패할 때, = 실패예요
+  .finally(() => console.log('final'))  // 성공했든 실패했든 무조건 실행됨, 마지막에 쓸 수 있고, 매개변수 없음. -->

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .done {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <input type="text" >
+    <input type="submit" value = "Todo"></input>
+  </form>
+  <ul></ul>
+  <script>
+		const form = document.querySelector('form')
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault()
+      
+      const input = document.querySelector('input')
+      data = input.value
+
+      if (data.trim()) {
+        const btn = document.createElement('button')
+        btn.innerText = 'X'
+        const li = document.createElement('li')
+        li.innerText = data +' '
+        li.appendChild(btn)
+        const ul = document.querySelector('ul')
+        ul.appendChild(li)
+        btn.addEventListener('click', function(event){
+          ul.removeChild(li)
+        })
+
+        li.addEventListener('click', (event) => {
+          console.log(event.target)
+          event.target.classList.toggle('done')
+          // console.log('hi')
+        })
+
+      } else {
+        alert('값을 입력하세요')
+      }
+      input.value = ''
+
+
+
+
+    })
+  </script>
+</body>
+</html>
